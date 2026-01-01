@@ -66,6 +66,11 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "post-install-cmd": [
+            "php artisan key:generate",
+            "touch database/database.sqlite",
+            "php artisan migrate --force"
         ]
     },
     "extra": {
