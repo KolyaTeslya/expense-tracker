@@ -29,7 +29,7 @@
       />
     </td>
     <td>
-      <button @click="deleteExpense(expense.id)">✕</button>
+        <button class="danger" @click="deleteExpense(expense.id)">✕</button>
     </td>
   </tr>
 </tbody>
@@ -50,7 +50,7 @@
         v-model="newExpense.amount"
       />
 
-      <button @click="addExpense">Add</button>
+      <button class="success" @click="addExpense">Add</button>
     </div>
 
     <div class="add-category">
@@ -59,12 +59,12 @@
         placeholder="New category"
         v-model="newCategory"
       />
-      <button @click="addCategory">Add category</button>
+      <button class="success" @click="addCategory">Add category</button>
     </div>
   </div>
   <div v-for="c in categories" :key="c.id" class="category-row">
   <input v-model="c.name" @blur="updateCategory(c)" />
-  <button @click="deleteCategory(c.id)">✕</button>
+        <button class="danger" @click="deleteCategory(c.id)">✕</button>
 </div>
 
 </template>

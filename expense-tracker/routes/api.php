@@ -23,13 +23,13 @@
     Route::post('/expenses', [ExpenseController::class, 'store']);
 
     Route::put('/income-sources/{incomeSource}', [IncomeSourceController::class, 'update']);
-Route::delete('/income-sources/{incomeSource}', [IncomeSourceController::class, 'destroy']);
+    Route::delete('/income-sources/{incomeSource}', [IncomeSourceController::class, 'destroy']);
 
-Route::put('/incomes/{income}', [IncomeController::class, 'update']);
-Route::delete('/incomes/{income}', [IncomeController::class, 'destroy']);
+    Route::put('/incomes/{income}', [IncomeController::class, 'update']);
+    Route::delete('/incomes/{income}', [IncomeController::class, 'destroy']);
 
-Route::put('/expense-categories/{expenseCategory}', [ExpenseCategoryController::class, 'update']);
-Route::delete('/expense-categories/{expenseCategory}', [ExpenseCategoryController::class, 'destroy']);
+    Route::put('/expense-categories/{expenseCategory}', [ExpenseCategoryController::class, 'update']);
+    Route::delete('/expense-categories/{expenseCategory}', [ExpenseCategoryController::class, 'destroy']);
 
-Route::put('/expenses/{expense}', [ExpenseController::class, 'update']);
-Route::delete('/expenses/{expense}', [ExpenseController::class, 'destroy']);
+    Route::put('/expenses/{expense}', [ExpenseController::class, 'update']);
+    Route::delete('/expenses/{expense}', [ExpenseController::class, 'destroy']);

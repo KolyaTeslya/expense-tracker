@@ -26,7 +26,7 @@
       />
     </td>
     <td>
-      <button @click="deleteIncome(income.id)">✕</button>
+        <button class="danger" @click="deleteIncome(income.id)">✕</button>
     </td>
   </tr>
 </tbody>
@@ -47,14 +47,16 @@
         v-model="newIncome.amount"
       />
 
-      <button @click="addIncome">Add</button>
+        <button class="success" @click="addIncome">Add</button>
     </div>
+    <IncomeSourceManager @updated="onSourcesUpdated" />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import api from '../api/api'
+import IncomeSourceManager from './IncomeSourceManager.vue'
 
 const props = defineProps({
   year: Number,
@@ -115,9 +117,20 @@ const deleteIncome = async (id) => {
   emit('updated')
 }
 
+const onSourcesUpdated = async () => {
+  await loadSources()
+  await loadIncomes()
+  emit('updated')
+}
+
+watch(
+  () => [props.year, props.month],
+  () => loadIncomes()
+)
 
 onMounted(() => {
   loadSources()
   loadIncomes()
 })
 </script>
+
