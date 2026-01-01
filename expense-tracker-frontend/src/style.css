@@ -1,78 +1,133 @@
-<template>
-  <div class="income-sources">
-    <h3>Income Sources</h3>
-
-    <!-- Add new source -->
-    <div class="add-income">
-      <input
-        v-model="newSource"
-        placeholder="New income source"
-      />
-      <button class="success" @click="createSource">
-        Add source
-      </button>
-    </div>
-
-    <!-- Existing sources -->
-    <div class="source-list">
-      <div
-        v-for="source in sources"
-        :key="source.id"
-        class="source-row"
-      >
-        <input
-          v-model="source.name"
-          @blur="updateSource(source)"
-        />
-        <button
-          class="danger"
-          @click="deleteSource(source.id)"
-        >
-          ✕
-        </button>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script setup>
-import { ref, onMounted } from 'vue'
-import api from '../api/api'
-
-const emit = defineEmits(['updated'])
-
-const sources = ref([])
-const newSource = ref('')
-
-const loadSources = async () => {
-  const res = await api.get('/income-sources')
-  sources.value = res.data
+* {
+  box-sizing: border-box;
+  font-family: Inter, Arial, sans-serif;
 }
 
-const createSource = async () => {
-  if (!newSource.value.trim()) return
-
-  await api.post('/income-sources', {
-    name: newSource.value
-  })
-
-  newSource.value = ''
-  await loadSources()
-  emit('updated')
+body {
+  margin: 0;
+  background: #f4f6f8;
 }
 
-const updateSource = async (source) => {
-  await api.put(`/income-sources/${source.id}`, {
-    name: source.name
-  })
-  emit('updated')
+.dashboard {
+  padding: 20px;
 }
 
-const deleteSource = async (id) => {
-  await api.delete(`/income-sources/${id}`)
-  await loadSources()
-  emit('updated')
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
-onMounted(loadSources)
-</script>
+.summary-card {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.summary-card .title {
+  font-size: 14px;
+  color: #666;
+}
+
+.summary-card .value {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.income-table,
+.expense-table {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px 4px;
+}
+
+th {
+  font-size: 13px;
+  color: #777;
+}
+
+.add-income,
+.add-expense,
+.add-category {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+select,
+input {
+  padding: 6px;
+}
+
+button {
+  padding: 6px 12px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+canvas {
+  background: white;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.source-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.source-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+button.success {
+  background: #16a34a;
+}
+
+button.success:hover {
+  background: #15803d;
+}
+
+button.danger {
+  background: #dc2626;
+}
+
+button.danger:hover {
+  background: #b91c1c;
+}
