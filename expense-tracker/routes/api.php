@@ -7,6 +7,7 @@
     use App\Http\Controllers\Api\ExpenseCategoryController;
     use App\Http\Controllers\Api\ExpenseController;
     use App\Http\Controllers\Api\DashboardController;
+    use Illuminate\Support\Facades\Route;
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
@@ -33,3 +34,9 @@
 
     Route::put('/expenses/{expense}', [ExpenseController::class, 'update']);
     Route::delete('/expenses/{expense}', [ExpenseController::class, 'destroy']);
+
+    Route::get('/health', function () {
+    return response()->json([
+        'status' => 'ok'
+        ]);
+    });
