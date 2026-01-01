@@ -7,7 +7,6 @@
     use App\Http\Controllers\Api\ExpenseCategoryController;
     use App\Http\Controllers\Api\ExpenseController;
     use App\Http\Controllers\Api\DashboardController;
-    use Illuminate\Support\Facades\Route;
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
