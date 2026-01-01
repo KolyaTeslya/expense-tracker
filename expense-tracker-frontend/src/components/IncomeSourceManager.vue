@@ -2,16 +2,37 @@
   <div class="income-sources">
     <h3>Income Sources</h3>
 
-    <!-- ADD NEW SOURCE -->
-    <div class="add-source">
+  <div class="add-source">
+    <input
+      v-model="newSource"
+      placeholder="New income source"
+      class="input"
+    />
+    <button class="btn btn-green" @click="createSource">
+      Add source
+    </button>
+  </div>
+
+  <div class="source-list">
+    <div
+      v-for="source in sources"
+      :key="source.id"
+      class="source-row"
+    >
       <input
-        v-model="newSource"
-        placeholder="New income source"
+        v-model="source.name"
+        @blur="updateSource(source)"
+        class="input"
       />
-      <button class="btn btn-green" @click="createSource">
-        Add source
+      <button
+        class="btn btn-danger"
+        @click="deleteSource(source.id)"
+      >
+        ✕
       </button>
     </div>
+  </div>
+
 
     <!-- LIST -->
     <div class="source-list">
