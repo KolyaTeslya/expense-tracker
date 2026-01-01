@@ -16,6 +16,8 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --no-scripts
 
+RUN php artisan migrate --force
+
 RUN touch database/database.sqlite
 
 EXPOSE 8000
