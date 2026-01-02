@@ -134,4 +134,8 @@ button.danger:hover {
 .income-sources .source-list {
   margin-top: 12px;
 }
+.source-row {
+  margin-bottom: 8px;
+}
+
 
