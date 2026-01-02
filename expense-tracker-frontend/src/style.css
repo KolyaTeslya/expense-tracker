@@ -135,7 +135,15 @@ button.danger:hover {
   margin-top: 12px;
 }
 .source-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
   margin-bottom: 8px;
 }
+
+.source-row:last-child {
+  margin-bottom: 0;
+}
+
 
 
