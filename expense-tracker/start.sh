@@ -1,7 +1,10 @@
 #!/bin/sh
 set -e
 
-php artisan key:generate --force || true
+echo "Starting Expense Tracker..."
+
+php artisan config:clear
+
 php artisan migrate --force
 
-exec php artisan serve --host=0.0.0.0 --port=8000
+exec php artisan serve --host=0.0.0.0 --port="${PORT:-8000}"
